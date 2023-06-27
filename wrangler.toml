@@ -8,7 +8,7 @@ main = "index.js"
 crons = ["* * * * *"]
 
 [site]
-bucket = "out"
+bucket = "./out"
 
 #[build]
 #command = "npm run build"
