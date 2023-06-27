@@ -21,6 +21,7 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "wranglerjs-compat-webpack-plugin": "^0.0.7",
     "autoprefixer": "^10.0.2",
     "node-fetch": "^2.6.1",
     "postcss": "^8.2.13",
