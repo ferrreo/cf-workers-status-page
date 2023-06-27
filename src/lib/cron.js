@@ -138,9 +138,7 @@ async function processCronTrigger(env) {
   return new Response('OK')
 }
 
-const kvDataKey = 'monitors_data_v1_1';
-
-type ENV = App.Platform['env'];
+var kvDataKey = 'monitors_data_v1_1';
 
 async function getKVMonitors(env) {
   // trying both to see performance difference
