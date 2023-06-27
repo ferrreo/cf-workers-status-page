@@ -1,6 +1,6 @@
 name = "cf-svelte-ts-pika"
 workers_dev = true
-main = "./.svelte-kit/cloudflare/"
+main = "./.svelte-kit/cloudflare/worker.js"
 compatibility_date = "2023-04-19"
 node_compat = true
 
