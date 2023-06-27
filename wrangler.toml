@@ -1,19 +1,11 @@
-name = "cf-workers-pika-status-page"
+name = "cf-svelte-ts-pika"
 workers_dev = true
+main = "./.svelte-kit/cloudflare/"
 compatibility_date = "2023-04-19"
 node_compat = true
-main = "index.js"
 
 [triggers]
 crons = ["* * * * *"]
 
 [site]
-bucket = "out"
-
-#[build]
-#command = "npm run build"
-# uncomment and adjust following if you are not using GitHub Actions
-#[env.production]
-#kv-namespaces = [{binding="KV_STATUS_PAGE", id="xxxx", preview_id=""}]
-#zone_id="xxx"
-#route="xxx"
+bucket = ".svelte-kit/output/"
