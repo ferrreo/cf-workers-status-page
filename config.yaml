@@ -27,7 +27,7 @@ monitors:
   - id: ppa-pika-os-com
     name: ppa-pika-os-com
     description: 'Package repo for PikaOS'
-    url: 'https://ppa.pika-os.com'
+    url: 'https://ppa.pika-os.com/'
     method: GET
     expectStatus: 200
     linkable: false # allows the title to be a link, default=true
@@ -35,7 +35,7 @@ monitors:
   - id: iso-pika-os-com
     name: iso-pika-os-com
     description: 'ISO repo for PikaOS'
-    url: 'https://iso.pika-os.com'
+    url: 'https://iso.pika-os.com/'
     method: GET
     expectStatus: 200
     linkable: false # allows the title to be a link, default=true
