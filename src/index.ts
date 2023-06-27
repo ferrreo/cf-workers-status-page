@@ -12,7 +12,6 @@
 import { processCronTrigger } from '$lib/functions/cronTrigger';
 
 export default {
-
   async scheduled(
     controller: ScheduledController,
     env: App.Platform['env'],
