@@ -8,15 +8,10 @@ async function cron(env) {
   processCronTrigger(env)
 }
 
-
-function getDate() {
-  return new Date().toISOString().split('T')[0]
-}
-
 async function processCronTrigger(env) {
   // Get Worker PoP and save it to monitorsStateMetadata
   var checkLocation = await getCheckLocation()
-  var checkDay = getDate()
+  var checkDay = new Date().toISOString().split('T')[0]
 
   // Get monitors state from KV
   let monitorsState = await getKVMonitors()
@@ -193,7 +188,6 @@ async function getCheckLocation() {
   });
   return res.headers?.get('cf-ray')?.split('-')[1];
 }
-
 
 var config = {
   "settings": {
