@@ -1,4 +1,4 @@
-name = "cf-workers-status-page"
+name = "cf-workers-status-pagee"
 workers_dev = true
 webpack_config = "node_modules/flareact/webpack"
 compatibility_date = "2021-07-23"
