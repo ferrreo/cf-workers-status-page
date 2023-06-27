@@ -1,5 +1,5 @@
 // copied from https://github.com/eidam/cf-workers-status-page/blob/main/src/cli/gcMonitors.js
-// import fetch from 'node-fetch';
+import fetch from 'node-fetch';
 import config from '../src/config.json' assert { type: 'json' };
 
 const accountId = process.env.CF_ACCOUNT_ID;
