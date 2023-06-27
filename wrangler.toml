@@ -10,7 +10,7 @@ crons = ["* * * * *"]
 bucket = "out"
 
 [build]
-command = "npm run deploy"
+command = "npm run build"
 # uncomment and adjust following if you are not using GitHub Actions
 #[env.production]
 #kv-namespaces = [{binding="KV_STATUS_PAGE", id="xxxx", preview_id=""}]
