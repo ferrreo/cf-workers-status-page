@@ -10,10 +10,6 @@ var getOperationalLabel = (operational) => {
     : config.settings.monitorLabelNotOperational;
 };
 
-async function setKV(env, key, value, metadata, expirationTtl) {
-  return env.KV_STATUS_PAGE.put(key, value, { metadata, expirationTtl });
-}
-
 async function notifyDiscord(env, monitor, operational) {
   if (!env.SECRET_DISCORD_WEBHOOK_URL) {
     console.error('SECRET_DISCORD_WEBHOOK_URL is not set');
