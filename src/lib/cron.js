@@ -2,6 +2,62 @@ entry_default.scheduled = async (event, env, ctx) => {
   ctx.waitUntil(processCronTrigger(env));
 };
 
+var kvDataKey = 'monitors_data_v1_1';
+
+async function getKVMonitors(env) {
+  // trying both to see performance difference
+  return await env.KV_STATUS_PAGE.get(kvDataKey, 'json');
+  //return JSON.parse(await KV_STATUS_PAGE.get(kvDataKey, 'text'))
+}
+
+async function setKVMonitors(env, data) {
+  return setKV(env, kvDataKey, JSON.stringify(data), undefined, undefined);
+}
+
+var getOperationalLabel = (operational) => {
+  return operational
+    ? config.settings.monitorLabelOperational
+    : config.settings.monitorLabelNotOperational;
+};
+
+async function setKV(env, key, value, metadata, expirationTtl) {
+  return env.KV_STATUS_PAGE.put(key, value, { metadata, expirationTtl });
+}
+
+async function notifyDiscord(env, monitor, operational) {
+  if (!env.SECRET_DISCORD_WEBHOOK_URL) {
+    console.error('SECRET_DISCORD_WEBHOOK_URL is not set');
+    return;
+  }
+  var payload = {
+    username: `${config.settings.title}`,
+    avatar_url: `${config.settings.url}/${config.settings.logo}`,
+    embeds: [
+      {
+        title: `${monitor.name} is ${getOperationalLabel(operational)} ${
+          operational ? ':white_check_mark:' : ':x:'
+        }`,
+        description: `\`${monitor.method ? monitor.method : 'GET'} ${
+          monitor.url
+        }\` - :eyes: [Status Page](${config.settings.url})`,
+        color: operational ? 3581519 : 13632027,
+      },
+    ],
+  }
+  return fetch(env.SECRET_DISCORD_WEBHOOK_URL, {
+    body: JSON.stringify(payload),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  })
+}
+
+async function getCheckLocation() {
+  var res = await fetch('https://cloudflare-dns.com/dns-query', {
+    method: 'OPTIONS'
+  });
+  return res.headers?.get('cf-ray')?.split('-')[1];
+}
+
 var config = {
   "settings": {
     "title": "PikaOS Status",
