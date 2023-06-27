@@ -10,13 +10,6 @@ var getOperationalLabel = (operational) => {
     : config.settings.monitorLabelNotOperational;
 };
 
-async function getCheckLocation() {
-  var res = await fetch('https://cloudflare-dns.com/dns-query', {
-    method: 'OPTIONS'
-  });
-  return res.headers?.get('cf-ray')?.split('-')[1];
-}
-
 var config = {
   "settings": {
     "title": "PikaOS Status",
