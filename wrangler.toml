@@ -2,13 +2,14 @@ name = "cf-workers-pika-status-page"
 workers_dev = true
 compatibility_date = "2023-04-19"
 compatibility_flags = [ "nodejs_compat" ]
+node_compat = true
 main = "index.js"
 
 [triggers]
 crons = ["* * * * *"]
 
 [site]
-bucket = "./out"
+bucket = "out"
 
 #[build]
 #command = "npm run build"
