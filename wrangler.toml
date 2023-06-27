@@ -1,7 +1,7 @@
 name = "cf-workers-pika-status-page"
 workers_dev = true
-compatibility_date = "2022-07-12"
-node_compat = true
+compatibility_date = "2023-04-19"
+compatibility_flags = [ "nodejs_compat" ]
 main = "index.js"
 
 [triggers]
