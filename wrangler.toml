@@ -1,11 +1,9 @@
 name = "cf-svelte-ts-pika"
 workers_dev = true
-main = "./.svelte-kit/cloudflare/worker.js"
+main = "./.cloudflare/worker.js"
+site.bucket = "./.cloudflare/public"
 compatibility_date = "2023-04-19"
 node_compat = true
 
 [triggers]
 crons = ["* * * * *"]
-
-[site]
-bucket = ".svelte-kit/output/"
