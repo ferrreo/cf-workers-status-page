@@ -1,6 +1,5 @@
 name = "cf-workers-status-pagee"
 workers_dev = true
-webpack_config = "node_modules/flareact/webpack"
 compatibility_date = "2022-07-12"
 main = "index.js"
 
@@ -10,6 +9,8 @@ crons = ["* * * * *"]
 [site]
 bucket = "out"
 
+[build]
+command = "npm run deploy"
 # uncomment and adjust following if you are not using GitHub Actions
 #[env.production]
 #kv-namespaces = [{binding="KV_STATUS_PAGE", id="xxxx", preview_id=""}]
