@@ -4,16 +4,6 @@ entry_default.scheduled = async (event, env, ctx) => {
 
 var kvDataKey = 'monitors_data_v1_1';
 
-async function getKVMonitors(env) {
-  // trying both to see performance difference
-  return await env.KV_STATUS_PAGE.get(kvDataKey, 'json');
-  //return JSON.parse(await KV_STATUS_PAGE.get(kvDataKey, 'text'))
-}
-
-async function setKVMonitors(env, data) {
-  return setKV(env, kvDataKey, JSON.stringify(data), undefined, undefined);
-}
-
 var getOperationalLabel = (operational) => {
   return operational
     ? config.settings.monitorLabelOperational
