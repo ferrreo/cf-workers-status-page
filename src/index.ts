@@ -12,11 +12,12 @@
 import { processCronTrigger } from '$lib/functions/cronTrigger';
 
 export default {
+
   async scheduled(
     controller: ScheduledController,
     env: App.Platform['env'],
     ctx: ExecutionContext
   ): Promise<void> {
-    await processCronTrigger(env);
+    ctx.waitUntil(processCronTrigger(env));
   }
 };
