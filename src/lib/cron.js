@@ -50,7 +50,7 @@ var config = {
       "id": "iso-pika-os-com",
       "name": "iso-pika-os.com",
       "description": "PikaOS ISO Repo",
-      "url": "https://iso.pika-os.com/",
+      "url": "https://iso.pika-os.com/?chk=1",
       "method": "GET",
       "expectStatus": 200,
       "linkable": false
