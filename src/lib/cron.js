@@ -1,31 +1,41 @@
 entry_default.scheduled = async (event, env, ctx) => {
   var id = env.EUWEST.idFromName("EUWEST");
   var obj = env.EUWEST.get(id, { locationHint: "weur" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  var data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+
+  let url = new URL("https://status.pika-os.com");
+  url.searchParams.set("data", data);
   id = env.WNAM.idFromName("WNAM");
   obj = env.WNAM.get(id, { locationHint: "wnam" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch(url, {}));
+  url.searchParams.set("data", data);
   id = env.ENAM.idFromName("ENAM");
   obj = env.ENAM.get(id, { locationHint: "enam" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  url.searchParams.set("data", data);
   id = env.SAM.idFromName("SAM");
   obj = env.SAM.get(id, { locationHint: "sam" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  url.searchParams.set("data", data);
   id = env.EEUR.idFromName("EEUR");
   obj = env.EEUR.get(id, { locationHint: "eeur" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  url.searchParams.set("data", data);
   id = env.APAC.idFromName("APAC");
   obj = env.APAC.get(id, { locationHint: "apac" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  url.searchParams.set("data", data);
   id = env.OC.idFromName("OC");
   obj = env.OC.get(id, { locationHint: "oc" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  url.searchParams.set("data", data);
   id = env.AFR.idFromName("AFR");
   obj = env.AFR.get(id, { locationHint: "afr" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  url.searchParams.set("data", data);
   id = env.ME.idFromName("ME");
   obj = env.ME.get(id, { locationHint: "me" });
-  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
 };
 
 
@@ -37,8 +47,8 @@ export class EUWestObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const data = await processCronTrigger(this.env)
+    return new Response(data);
   }
 }
 
@@ -50,8 +60,10 @@ export class WNAMObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData)
+    return new Response(data);
   }
 }
 
@@ -63,8 +75,10 @@ export class ENAMObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData)
+    return new Response(data);
   }
 }
 
@@ -76,8 +90,10 @@ export class SAMObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData)
+    return new Response(data);
   }
 }
 
@@ -89,8 +105,10 @@ export class EEURObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData)
+    return new Response(data);
   }
 }
 
@@ -102,8 +120,10 @@ export class APACObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData)
+    return new Response(data);
   }
 }
 
@@ -115,8 +135,10 @@ export class OCObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData)
+    return new Response(data);
   }
 }
 
@@ -128,8 +150,10 @@ export class AFRObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData)
+    return new Response(data);
   }
 }
 
@@ -141,8 +165,10 @@ export class MEObject {
   }
 
   async fetch(request) {
-    await processCronTrigger(this.env)
-    return new Response("OK");
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, true)
+    return new Response(data);
   }
 }
 
