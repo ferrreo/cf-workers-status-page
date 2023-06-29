@@ -5,8 +5,6 @@ import {
   getCheckLocation,
   getKVMonitors,
   notifyDiscord,
-  // notifySlack,
-  // notifyTelegram,
   setKVMonitors
 } from './helpers';
 
@@ -42,12 +40,11 @@ export async function processCronTrigger(env: App.Platform['env']) {
 
     console.log(`Checking ${monitor.name} ...`);
 
-    // Fetch the monitors URL
     const init: RequestInit = {
       method: monitor.method || 'GET',
       redirect: monitor.followRedirect ? 'follow' : 'manual',
       headers: {
-        'User-Agent': config.settings.user_agent || 'cf-worker-status-page'
+        'User-Agent': 'cf-worker-status-page'
       }
     };
 
@@ -57,7 +54,7 @@ export async function processCronTrigger(env: App.Platform['env']) {
     const requestTime = Math.round(Date.now() - requestStartTime);
 
     // Determine whether operational and status changed
-    const monitorOperational = checkResponse.status === (monitor.expectStatus || 200);
+    const monitorOperational = checkResponse.status >= 200 && checkResponse.status < 400;
     const monitorStatusChanged =
       monitorsState.monitors[monitor.id].lastCheck.operational !== monitorOperational;
 
@@ -68,25 +65,10 @@ export async function processCronTrigger(env: App.Platform['env']) {
       operational: monitorOperational
     };
 
-    /* TODO: notify adapters
-    // Send Slack message on monitor change
-    if (
-      monitorStatusChanged &&
-      typeof SECRET_SLACK_WEBHOOK_URL !== 'undefined' &&
-      SECRET_SLACK_WEBHOOK_URL !== 'default-gh-action-secret'
-    ) {
-      event.waitUntil(notifySlack(monitor, monitorOperational))
-    }
- */
     // Send Discord message on monitor change
     if (monitorStatusChanged && env.SECRET_DISCORD_WEBHOOK_URL) {
       await notifyDiscord(env, monitor, monitorOperational);
     }
-
-    // Send Telegram message on monitor change
-    // if (monitorStatusChanged && env.SECRET_TELEGRAM_API_TOKEN && env.SECRET_TELEGRAM_CHAT_ID) {
-    //   await notifyTelegram(env, monitor, monitorOperational);
-    // }
 
     // make sure checkDay exists in checks in cases when needed
     if (
@@ -139,6 +121,5 @@ export async function processCronTrigger(env: App.Platform['env']) {
   // Save monitorsState to KV storage
   await setKVMonitors(env, monitorsState);
 
-  // return new Response('OK')
-  return checkDay;
+  return;
 }

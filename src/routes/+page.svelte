@@ -50,9 +50,6 @@
           Cloudflare Workers
         </a>
       </div>
-      <div>
-        <a href="https://github.com/kxxoling/cf-status-page" target="_blank"> Get Your Status Page </a>
-      </div>
     </div>
   </div>
 </div>

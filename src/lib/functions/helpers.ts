@@ -15,12 +15,6 @@ export async function setKVMonitors(env: ENV, data: JSON) {
   return setKV(env, kvDataKey, JSON.stringify(data), undefined, undefined);
 }
 
-const getOperationalLabel = (operational: boolean) => {
-  return operational
-    ? config.settings.monitorLabelOperational
-    : config.settings.monitorLabelNotOperational;
-};
-
 async function setKV(
   env: ENV,
   key: string,
@@ -30,71 +24,6 @@ async function setKV(
 ) {
   return env.KV_STATUS_PAGE.put(key, value, { metadata, expirationTtl });
 }
-
-// export async function notifySlack(monitor, operational) {
-//   const payload = {
-//     attachments: [
-//       {
-//         fallback: `Monitor ${monitor.name} changed status to ${getOperationalLabel(operational)}`,
-//         color: operational ? '#36a64f' : '#f2c744',
-//         blocks: [
-//           {
-//             type: 'section',
-//             text: {
-//               type: 'mrkdwn',
-//               text: `Monitor *${
-//                 monitor.name
-//               }* changed status to *${getOperationalLabel(operational)}*`,
-//             },
-//           },
-//           {
-//             type: 'context',
-//             elements: [
-//               {
-//                 type: 'mrkdwn',
-//                 text: `${operational ? ':white_check_mark:' : ':x:'} \`${
-//                   monitor.method ? monitor.method : 'GET'
-//                 } ${monitor.url}\` - :eyes: <${
-//                   config.settings.url
-//                 }|Status Page>`,
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//     ],
-//   }
-//   return fetch(SECRET_SLACK_WEBHOOK_URL, {
-//     body: JSON.stringify(payload),
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//   })
-// }
-
-// export async function notifyTelegram(env: ENV, monitor: App.MonitorConfig, operational: boolean) {
-//   if (!env.SECRET_TELEGRAM_CHAT_ID) {
-//     console.error('SECRET_TELEGRAM_CHAT_ID is not set');
-//     return;
-//   }
-//   const text = `Monitor *${monitor.name.replaceAll(
-//     '-',
-//     '\\-'
-//   )}* changed status to *${getOperationalLabel(operational)}*
-//   ${operational ? '✅' : '❌'} \`${monitor.method ? monitor.method : 'GET'} ${
-//     monitor.url
-//   }\` \\- 👀 [Status Page](${config.settings.url})`;
-
-//   const payload = new FormData();
-//   payload.append('chat_id', env.SECRET_TELEGRAM_CHAT_ID);
-//   payload.append('parse_mode', 'MarkdownV2');
-//   payload.append('text', text);
-
-//   const telegramUrl = `https://api.telegram.org/bot${SECRET_TELEGRAM_API_TOKEN}/sendMessage`;
-//   return fetch(telegramUrl, {
-//     body: payload,
-//     method: 'POST'
-//   });
-// }
 
 // Visualize your payload using https://leovoel.github.io/embed-visualizer/
 export async function notifyDiscord(env: ENV, monitor: App.MonitorConfig, operational: boolean) {
@@ -107,7 +36,8 @@ export async function notifyDiscord(env: ENV, monitor: App.MonitorConfig, operat
     avatar_url: `${config.settings.url}/${config.settings.logo}`,
     embeds: [
       {
-        title: `${monitor.name} is ${getOperationalLabel(operational)} ${
+        title: `${monitor.name} is ${operational ? config.settings.monitorLabelOperational
+          : config.settings.monitorLabelNotOperational} ${
           operational ? ':white_check_mark:' : ':x:'
         }`,
         description: `\`${monitor.method ? monitor.method : 'GET'} ${
@@ -128,5 +58,5 @@ export async function getCheckLocation() {
   const res = await fetch('https://cloudflare-dns.com/dns-query', {
     method: 'OPTIONS'
   });
-  return res.headers?.get('cf-ray')?.split('-')[1];
+  return res.headers?.get('cf-ray')?.split('-')[1] || "";
 }

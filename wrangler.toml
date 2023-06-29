@@ -8,16 +8,4 @@ node_compat = true
 [triggers]
 crons = ["* * * * *"]
 
-[[migrations]]
-tag = "v4" # Should be unique for each entry
-new_classes = ["EUWestObject"]
-
-[[migrations]]
-tag = "v5" # Should be unique for each entry
-new_classes = ["WNAMObject", "ENAMObject", "SAMObject", "EEURObject", "APACObject", "OCObject", "AFRObject", "MEObject"]
-
-[[migrations]]
-tag = "v6" # Should be unique for each entry
-delete_classes = ["EUWestObject", "WNAMObject", "ENAMObject", "SAMObject", "EEURObject", "APACObject", "OCObject", "AFRObject", "MEObject"]
-
 [env.production]
