@@ -57,3 +57,136 @@ var config = {
     }
   ]
 };
+
+export class EUWestObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const data = await processCronTrigger(this.env, null, false, "West Europe")
+    return new Response(data);
+  }
+}
+
+export class WNAMObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, false, "West North America")
+    return new Response(data);
+  }
+}
+
+export class ENAMObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, false, "East North America")
+    return new Response(data);
+  }
+}
+
+export class SAMObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, false, "South America")
+    return new Response(data);
+  }
+}
+
+export class EEURObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, false, "East Europe")
+    return new Response(data);
+  }
+}
+
+export class APACObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, false, "Asia Pacific")
+    return new Response(data);
+  }
+}
+
+export class OCObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, false, "Oceana")
+    return new Response(data);
+  }
+}
+
+export class AFRObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, false, "Africa")
+    return new Response(data);
+  }
+}
+
+export class MEObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    const inputData = url.searchParams.get("data");
+    const data = await processCronTrigger(this.env, inputData, true, "Middle East")
+    return new Response(data);
+  }
+}
