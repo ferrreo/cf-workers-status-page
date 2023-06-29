@@ -1,18 +1,16 @@
 // import fetch from 'node-fetch'
 import config from '../../config.json';
 
-const kvDataKey = 'monitors_data_v1_1';
+
 
 type ENV = App.Platform['env'];
 
 export async function getKVMonitors(env: ENV): Promise<JSON | null> {
-  // trying both to see performance difference
-  return await env.KV_STATUS_PAGE.get(kvDataKey, 'json');
-  //return JSON.parse(await KV_STATUS_PAGE.get(kvDataKey, 'text'))
+  return await env.KV_STATUS_PAGE.get('monitors_data_v1_1', 'json');
 }
 
 export async function setKVMonitors(env: ENV, data: JSON) {
-  return setKV(env, kvDataKey, JSON.stringify(data), undefined, undefined);
+  return setKV(env, 'monitors_data_v1_1', JSON.stringify(data), undefined, undefined);
 }
 
 async function setKV(

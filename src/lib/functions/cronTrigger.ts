@@ -13,6 +13,7 @@ function getDate() {
 }
 
 export async function processCronTrigger(env: App.Platform['env']) {
+
   // Get Worker PoP and save it to monitorsStateMetadata
   const checkLocation = await getCheckLocation();
   const checkDay = getDate();
