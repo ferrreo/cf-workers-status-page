@@ -8,10 +8,6 @@ node_compat = true
 [triggers]
 crons = ["* * * * *"]
 
-[[migrations]]
-tag = "v2" # Should be unique for each entry
-new_classes = ["EUWestObject"]
-
 [env.production]
 
 [env.production.durable_objects]
