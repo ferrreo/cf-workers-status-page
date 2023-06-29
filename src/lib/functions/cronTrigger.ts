@@ -1,10 +1,11 @@
 // import fetch from 'node-fetch'
+import config from '../../config.json';
+
 import {
   getCheckLocation,
   getKVMonitors,
   notifyDiscord,
-  setKVMonitors,
-  getConfig,
+  setKVMonitors
 } from './helpers';
 
 function getDate() {
@@ -12,7 +13,6 @@ function getDate() {
 }
 
 export async function processCronTrigger(env: App.Platform['env']) {
-  const config = await getConfig();
   // Get Worker PoP and save it to monitorsStateMetadata
   const checkLocation = await getCheckLocation();
   const checkDay = getDate();
