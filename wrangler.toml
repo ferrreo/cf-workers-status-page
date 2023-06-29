@@ -5,6 +5,11 @@ site.bucket = "./.cloudflare/public"
 compatibility_date = "2023-04-19"
 node_compat = true
 
+[triggers]
+crons = ["* * * * *"]
+
+[env.production]
+
 [durable_objects]
 bindings = [{name = "EUWEST", class_name = "EUWestObject"}]
 
@@ -12,5 +17,3 @@ bindings = [{name = "EUWEST", class_name = "EUWestObject"}]
 tag = "v1" # Should be unique for each entry
 new_classes = ["EUWestObject"]
 
-[triggers]
-crons = ["* * * * *"]

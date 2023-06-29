@@ -1,6 +1,6 @@
 import { processCronTrigger } from './cronTrigger';
 
-export class EUWestObject implements DurableObject {
+export default class EUWestObject implements DurableObject {
 
   private state: DurableObjectState;
   private env: App.Platform['env'];
