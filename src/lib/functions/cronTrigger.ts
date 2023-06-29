@@ -144,5 +144,5 @@ export async function processCronTrigger(env: App.Platform['env'], data: any, sa
     await setKVMonitors(env, monitorsState);
   }
   // return new Response('OK')
-  return monitorsState;
+  return JSON.stringify(monitorsState);
 }
