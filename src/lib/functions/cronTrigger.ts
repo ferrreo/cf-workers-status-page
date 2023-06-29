@@ -20,7 +20,7 @@ export async function processCronTrigger(env: App.Platform['env'], data: any, sa
   const checkDay = getDate();
 
   // Get monitors state from KV or keep from data
-  let monitorsState = data;
+  let monitorsState = JSON.parse(data);
   if (!data) {
     const _monitorsState = (await getKVMonitors(env)) || { lastUpdate: {}, monitors: {} };
     monitorsState = _monitorsState as App.MonitorsState;
