@@ -86,7 +86,7 @@ export const locations = {
   HNL: 'Honolulu',
   HRE: 'Harare',
   HYD: 'Hyderabad',
-  IAD: 'Ashburn',
+  IAD: 'Washington',
   IAH: 'Houston',
   ICN: 'Seoul',
   IND: 'Indianapolis',
