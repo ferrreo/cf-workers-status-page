@@ -14,20 +14,14 @@ function getDate() {
   return new Date().toISOString().split('T')[0];
 }
 
-export async function processCronTrigger(env: App.Platform['env'], data: any, save = false, loc: string) {
+export async function processCronTrigger(env: App.Platform['env']) {
   // Get Worker PoP and save it to monitorsStateMetadata
   const checkLocation = await getCheckLocation();
   const checkDay = getDate();
-  console.log("location used: " + checkLocation);
-  console.log("location meant to be: " + loc);
-  // Get monitors state from KV or keep from data
-  let monitorsState = {};
-  if (!data) {
-    const _monitorsState = (await getKVMonitors(env)) || { lastUpdate: {}, monitors: {} };
-    monitorsState = _monitorsState as App.MonitorsState;
-  } else {
-    monitorsState = JSON.parse(data);
-  }
+
+  // Get monitors state from KV
+  const _monitorsState = (await getKVMonitors(env)) || { lastUpdate: {}, monitors: {} };
+  const monitorsState = _monitorsState as App.MonitorsState;
 
   // Reset default all monitors state to true
   monitorsState.lastUpdate.allOperational = true;
@@ -143,9 +137,8 @@ export async function processCronTrigger(env: App.Platform['env'], data: any, sa
   monitorsState.lastUpdate.loc = checkLocation;
 
   // Save monitorsState to KV storage
-  if (save) {
-    await setKVMonitors(env, monitorsState);
-  }
+  await setKVMonitors(env, monitorsState);
+
   // return new Response('OK')
-  return JSON.stringify(monitorsState);
+  return checkDay;
 }
