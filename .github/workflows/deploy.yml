@@ -38,7 +38,7 @@ jobs:
           echo 'bindings = [{name = "EUWEST", class_name = "EUWestObject"}]' >> wrangler.toml
           echo "[[migrations]]" >> wrangler.toml
           echo 'tag = "v1"' >> wrangler.toml
-          echo 'new_classes = ["EUWestObject"]'' >> wrangler.toml
+          echo 'new_classes = ["EUWestObject"]' >> wrangler.toml
         postCommands: |
           export KV_NAMESPACE_ID=$(wrangler kv:namespace list | jq -c 'map(select(.title | contains("KV_STATUS_PAGE")))' | jq -r ".[0].id")
           yarn kv-gc
