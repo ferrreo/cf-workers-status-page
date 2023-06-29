@@ -12,7 +12,7 @@ crons = ["* * * * *"]
 tag = "v4" # Should be unique for each entry
 new_classes = ["EUWestObject"]
 
-[env.production]
-
 [env.production.durable_objects]
 bindings = [{name = "EUWEST", class_name = "EUWestObject"}]
+
+[env.production]

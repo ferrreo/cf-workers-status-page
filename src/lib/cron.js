@@ -1,7 +1,7 @@
 entry_default.scheduled = async (event, env, ctx) => {
   var id = env.EUWEST.idFromName("EUWEST");
   var obj = env.EUWEST.get(id, { locationHint: 'weur' });
-  ctx.waitUntil(obj.fetch("", {}));
+  ctx.waitUntil(obj.fetch(event.cron));
 };
 
 export class EUWestObject {
@@ -11,7 +11,7 @@ export class EUWestObject {
     this.env = env;
   }
 
-  async fetch() {
+  async fetch(request) {
     await processCronTrigger(this.env)
     return new Response("OK");
   }
