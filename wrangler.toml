@@ -9,7 +9,7 @@ node_compat = true
 crons = ["* * * * *"]
 
 [[migrations]]
-tag = "v1" # Should be unique for each entry
+tag = "v2" # Should be unique for each entry
 new_classes = ["EUWestObject"]
 
 [env.production]
