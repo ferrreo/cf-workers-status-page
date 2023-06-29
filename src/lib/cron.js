@@ -4,38 +4,37 @@ entry_default.scheduled = async (event, env, ctx) => {
   var data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
 
   let url = new URL("https://status.pika-os.com");
-  url.searchParams.set("data", data);
   id = env.WNAM.idFromName("WNAM");
   obj = env.WNAM.get(id, { locationHint: "wnam" });
-  data = ctx.waitUntil(obj.fetch(url, {}));
+  data = ctx.waitUntil(obj.fetch(url));
   url.searchParams.set("data", data);
   id = env.ENAM.idFromName("ENAM");
   obj = env.ENAM.get(id, { locationHint: "enam" });
-  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch(url));
   url.searchParams.set("data", data);
   id = env.SAM.idFromName("SAM");
   obj = env.SAM.get(id, { locationHint: "sam" });
-  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch(url));
   url.searchParams.set("data", data);
   id = env.EEUR.idFromName("EEUR");
   obj = env.EEUR.get(id, { locationHint: "eeur" });
-  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch(url));
   url.searchParams.set("data", data);
   id = env.APAC.idFromName("APAC");
   obj = env.APAC.get(id, { locationHint: "apac" });
-  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch(url));
   url.searchParams.set("data", data);
   id = env.OC.idFromName("OC");
   obj = env.OC.get(id, { locationHint: "oc" });
-  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch(url));
   url.searchParams.set("data", data);
   id = env.AFR.idFromName("AFR");
   obj = env.AFR.get(id, { locationHint: "afr" });
-  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch(url));
   url.searchParams.set("data", data);
   id = env.ME.idFromName("ME");
   obj = env.ME.get(id, { locationHint: "me" });
-  data = ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  data = ctx.waitUntil(obj.fetch(url));
 };
 
 
