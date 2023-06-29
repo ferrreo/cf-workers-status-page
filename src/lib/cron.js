@@ -1,10 +1,139 @@
 entry_default.scheduled = async (event, env, ctx) => {
   var id = env.EUWEST.idFromName("EUWEST");
-  var obj = env.EUWEST.get(id, { locationHint: 'weur' });
-  ctx.waitUntil(obj.fetch(event.cron));
+  var obj = env.EUWEST.get(id, { locationHint: "weur" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  id = env.WNAM.idFromName("WNAM");
+  obj = env.WNAM.get(id, { locationHint: "wnam" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  id = env.ENAM.idFromName("ENAM");
+  obj = env.ENAM.get(id, { locationHint: "enam" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  id = env.SAM.idFromName("SAM");
+  obj = env.SAM.get(id, { locationHint: "sam" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  id = env.EEUR.idFromName("EEUR");
+  obj = env.EEUR.get(id, { locationHint: "eeur" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  id = env.APC.idFromName("APAC");
+  obj = env.APAC.get(id, { locationHint: "apac" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  id = env.OC.idFromName("OC");
+  obj = env.OC.get(id, { locationHint: "oc" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  id = env.AFR.idFromName("AFR");
+  obj = env.AFR.get(id, { locationHint: "afr" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
+  id = env.ME.idFromName("ME");
+  obj = env.ME.get(id, { locationHint: "me" });
+  ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
 };
 
+
 export class EUWestObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
+
+export class WNAMObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
+
+export class ENAMObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
+
+export class SAMObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
+
+export class EEURObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
+
+export class APACObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
+
+export class OCObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
+
+export class AFRObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch(request) {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
+
+export class MEObject {
 
   constructor(state, env) {
     this.state = state;

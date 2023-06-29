@@ -12,7 +12,11 @@ crons = ["* * * * *"]
 tag = "v4" # Should be unique for each entry
 new_classes = ["EUWestObject"]
 
+[[migrations]]
+tag = "v5" # Should be unique for each entry
+new_classes = ["WNAMObject", "ENAMObject", "SAMObject", "EEURObject", "APACObject", "OCObject", "AFRObject", ""MEObject]
+
 [env.production.durable_objects]
-bindings = [{name = "EUWEST", class_name = "EUWestObject"}]
+bindings = [{name = "EUWEST", class_name = "EUWestObject"},{name = "WNAM", class_name = "WNAMObject"},{name = "ENAM", class_name = "ENAMObject"},{name = "SAM", class_name = "SAMObject"},{name = "EEUR", class_name = "EEURObject"},{name = "APAC", class_name = "APACObject"},{name = "OC", class_name = "OCObject"},{name = "AFR", class_name = "AFRObject"},{name = "ME", class_name = "MEObject"},]
 
 [env.production]
