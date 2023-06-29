@@ -14,7 +14,7 @@ entry_default.scheduled = async (event, env, ctx) => {
   id = env.EEUR.idFromName("EEUR");
   obj = env.EEUR.get(id, { locationHint: "eeur" });
   ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
-  id = env.APC.idFromName("APAC");
+  id = env.APAC.idFromName("APAC");
   obj = env.APAC.get(id, { locationHint: "apac" });
   ctx.waitUntil(obj.fetch("https://status.pika-os.com"));
   id = env.OC.idFromName("OC");
