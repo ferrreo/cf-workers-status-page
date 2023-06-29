@@ -60,3 +60,7 @@ export async function getCheckLocation() {
   });
   return res.headers?.get('cf-ray')?.split('-')[1] || "";
 }
+
+export async function getConfig() {
+  return config;
+}

@@ -3,7 +3,7 @@
     "title": "PikaOS Status",
     "url": "https://status.pika-os.com",
     "logo": "logo-192x192.png",
-    "daysInHistogram": 90,
+    "daysInHistogram": 30,
     "collectResponseTimes": true,
     "allMonitorsOperational": "All Systems Operational",
     "notAllMonitorsOperational": "Not All Systems Operational",
