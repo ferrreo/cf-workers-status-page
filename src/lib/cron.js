@@ -1,5 +1,9 @@
 entry_default.scheduled = async (event, env, ctx) => {
-  ctx.waitUntil(processCronTrigger(env));
+  var id = env.EUWEST.idFromName("EUWEST");
+  var obj = env.EUWEST.get(id, { locationHint: 'weur' });
+  await obj.fetch("", {});
+
+  //ctx.waitUntil(processCronTrigger(env));
 };
 
 var kvDataKey = 'monitors_data_v1_1';
