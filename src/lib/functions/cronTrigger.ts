@@ -18,7 +18,7 @@ export async function processCronTrigger(env: App.Platform['env'], data: any, sa
   // Get Worker PoP and save it to monitorsStateMetadata
   const checkLocation = await getCheckLocation();
   const checkDay = getDate();
-
+  console.log("location: " + checkLocation);
   // Get monitors state from KV or keep from data
   let monitorsState = {};
   if (!data) {
