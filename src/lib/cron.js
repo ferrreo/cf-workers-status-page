@@ -1,10 +1,21 @@
 entry_default.scheduled = async (event, env, ctx) => {
   var id = env.EUWEST.idFromName("EUWEST");
   var obj = env.EUWEST.get(id, { locationHint: 'weur' });
-  await obj.fetch("", {});
-
-  //ctx.waitUntil(processCronTrigger(env));
+  ctx.waitUntil(obj.fetch("", {}));
 };
+
+export class EUWestObject {
+
+  constructor(state, env) {
+    this.state = state;
+    this.env = env;
+  }
+
+  async fetch() {
+    await processCronTrigger(this.env)
+    return new Response("OK");
+  }
+}
 
 var kvDataKey = 'monitors_data_v1_1';
 
