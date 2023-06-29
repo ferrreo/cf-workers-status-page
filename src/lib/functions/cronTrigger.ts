@@ -14,11 +14,12 @@ function getDate() {
   return new Date().toISOString().split('T')[0];
 }
 
-export async function processCronTrigger(env: App.Platform['env'], data: any, save = false) {
+export async function processCronTrigger(env: App.Platform['env'], data: any, save = false, loc: string) {
   // Get Worker PoP and save it to monitorsStateMetadata
   const checkLocation = await getCheckLocation();
   const checkDay = getDate();
-  console.log("location: " + checkLocation);
+  console.log("location used: " + checkLocation);
+  console.log("location meant to be: " + loc);
   // Get monitors state from KV or keep from data
   let monitorsState = {};
   if (!data) {

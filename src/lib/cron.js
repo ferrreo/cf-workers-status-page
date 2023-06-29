@@ -54,7 +54,7 @@ export class EUWestObject {
   }
 
   async fetch(request) {
-    const data = await processCronTrigger(this.env)
+    const data = await processCronTrigger(this.env, null, false, "West Europe")
     return new Response(data);
   }
 }
@@ -69,7 +69,7 @@ export class WNAMObject {
   async fetch(request) {
     const url = new URL(request.url);
     const inputData = url.searchParams.get("data");
-    const data = await processCronTrigger(this.env, inputData)
+    const data = await processCronTrigger(this.env, inputData, false, "West North America")
     return new Response(data);
   }
 }
@@ -84,7 +84,7 @@ export class ENAMObject {
   async fetch(request) {
     const url = new URL(request.url);
     const inputData = url.searchParams.get("data");
-    const data = await processCronTrigger(this.env, inputData)
+    const data = await processCronTrigger(this.env, inputData, false, "East North America")
     return new Response(data);
   }
 }
@@ -99,7 +99,7 @@ export class SAMObject {
   async fetch(request) {
     const url = new URL(request.url);
     const inputData = url.searchParams.get("data");
-    const data = await processCronTrigger(this.env, inputData)
+    const data = await processCronTrigger(this.env, inputData, false, "South America")
     return new Response(data);
   }
 }
@@ -114,7 +114,7 @@ export class EEURObject {
   async fetch(request) {
     const url = new URL(request.url);
     const inputData = url.searchParams.get("data");
-    const data = await processCronTrigger(this.env, inputData)
+    const data = await processCronTrigger(this.env, inputData, false, "East Europe")
     return new Response(data);
   }
 }
@@ -129,7 +129,7 @@ export class APACObject {
   async fetch(request) {
     const url = new URL(request.url);
     const inputData = url.searchParams.get("data");
-    const data = await processCronTrigger(this.env, inputData)
+    const data = await processCronTrigger(this.env, inputData, false, "Asia Pacific")
     return new Response(data);
   }
 }
@@ -144,7 +144,7 @@ export class OCObject {
   async fetch(request) {
     const url = new URL(request.url);
     const inputData = url.searchParams.get("data");
-    const data = await processCronTrigger(this.env, inputData)
+    const data = await processCronTrigger(this.env, inputData, false, "Oceana")
     return new Response(data);
   }
 }
@@ -159,7 +159,7 @@ export class AFRObject {
   async fetch(request) {
     const url = new URL(request.url);
     const inputData = url.searchParams.get("data");
-    const data = await processCronTrigger(this.env, inputData)
+    const data = await processCronTrigger(this.env, inputData, false, "Africa")
     return new Response(data);
   }
 }
@@ -174,7 +174,7 @@ export class MEObject {
   async fetch(request) {
     const url = new URL(request.url);
     const inputData = url.searchParams.get("data");
-    const data = await processCronTrigger(this.env, inputData, true)
+    const data = await processCronTrigger(this.env, inputData, true, "Middle East")
     return new Response(data);
   }
 }
